@@ -1,0 +1,486 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+
+.hero-image {
+    width: 300px; /* Adjust the width as needed */
+    height: 300px; /* Set height to match width for a circle */
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(10, 10, 49); /* In the HTML file the colors were flipped */
+    color: white;
+    background-image: radial-gradient(skyblue 1px, transparent 1px), radial-gradient(#505050 1px, transparent 1px);
+    background-size: 50px 50px, 25px 25px;
+    background-position: 0 0, 12px 12px;
+    animation: twinkling 15s infinite linear;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+/* Galaxy Background Animation */
+@keyframes twinkling {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 750px 750px, 500px 500px; }
+}
+
+/* Navbar Styles */
+nav {
+    background: (0, 0, 0, 0.8); /* Transparent dark navbar */
+    color: gray;
+    padding: 1rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px grey; /* Glowing effect */
+    margin-bottom: 3rem; /* Add margin to separate from hero */
+}
+
+nav h2 {
+    margin: 0;
+    font-weight: bold;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+    padding: 1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background: linear-gradient(45deg, blue, navy, indigo);
+    color:white;
+}
+
+/* Hero Section Styles */
+.hero {
+    height: 80vh; /* Increase the height to accommodate the image and text */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    position: relative;
+    overflow: visible; /* Allow content to overflow */
+    border: none;
+    margin-top: 5%;
+    margin-bottom: -1%;
+}
+
+.hero::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero h1 {
+    font-size: 3rem; /* Reduce font size slightly */
+    letter-spacing: 2px;
+    color: lightblue;
+    z-index: 1;
+    margin-bottom: 1rem; /* Add some space below the h1 */
+}
+
+.hero p {
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 1rem; /* Add some space below the paragraph */
+    font-size: 1.25rem;
+    color: white;
+    letter-spacing: 2px;
+    z-index: 1;
+}
+
+.hero-image {
+    width: 200px; /* Reduce the width slightly */
+    height: 200px; /* Reduce the height to match the width */
+    margin-top: 1rem; /* Add some space above the image */
+    margin-bottom: 1rem; /* Add some space below the image */
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.hero p .wave-emoji {
+    font-size: 150%;
+    display: inline-block;
+    animation: wave 2s infinite;
+    transform-origin: 90% 90%;
+}
+
+/* General Container for Sections */
+.container {
+    padding: 5rem;
+    max-width: 1000px;
+    margin: 2rem auto;  /* Add margin to create space between sections */
+    border-radius: 1%;
+    box-shadow: 0px 5px 30px gray
+}
+
+/* About Section */
+#about {
+    margin-bottom: 3rem; /* Space between sections */
+    border: 1px solid gray; /* Reduced border width */
+    opacity: 1;
+}
+
+#about h2 {
+    color: lightblue; /* Light blue */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#about p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Work Experience Section */
+#experience {
+    margin-top: 5%;
+    margin-bottom: 3rem;
+    border-radius: 0%;
+}
+
+#experience h2 {
+    color: lightblue;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Roadmap Container */
+.roadmap {
+    position: relative;
+    width: 90%; /* Increased from 40% for better mobile display */
+    margin: 0 auto;
+    padding: 1rem; /* Reduced padding for mobile */
+}
+
+/* Roadmap Vertical Line */
+.roadmap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30px; /* Fixed position from left instead of center */
+    width: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: -1;
+    transform: none; /* Remove center transform */
+}
+
+/* Roadmap Item */
+.roadmap-item {
+    position: relative;
+    width: 100%; /* Full width on mobile */
+    padding: 1rem 1rem 1rem 60px; /* Added left padding to accommodate icon */
+    margin-bottom: 2rem;
+    min-height: 100px;
+}
+
+.roadmap-item.right {
+    left: 0; /* Reset left position */
+    text-align: left;
+}
+
+/* Roadmap Icon (Checkpoint) */
+.roadmap-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Only transform Y axis */
+    left: 6.5px; /* Align with vertical line */
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Roadmap Content */
+.roadmap-content {
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0px 5px 30px gray;
+    background-color: rgba(0, 0, 0, 0.3); /* Added background for better readability */
+}
+
+.roadmap-content h3 {
+    color: aqua;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem; /* Added explicit font size */
+}
+
+.roadmap-content span {
+    color: lightblue;
+    font-size: 1rem; /* Increased from 0.9rem for better readability */
+    font-style: italic;
+    display: block; /* Added to ensure clean line breaks */
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-content p {
+    font-size: 1rem; /* Slightly reduced from 1.1rem */
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+/* Projects Section */
+#projects {
+    margin-bottom: 3rem; /* Space between sections */
+}
+
+#projects h2 {
+    color: lightblue; /* Light blue */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Increased gap for better spacing between project cards */
+}
+
+.project-card {
+    
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: calc(33.333% - 1rem);
+    margin-bottom: 1.5rem; /* Space between project cards */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8); /* Add shadow for more depth */
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(45deg, blue, navy, indigo);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 0; /* Hidden by default */
+}
+
+.project-card:hover::before {
+    opacity: 1; /* Show gradient border on hover */
+}
+
+.project-card h3 {
+    color: aqua;
+    margin-bottom: 0.5rem;
+}
+
+.project-card p {
+    font-size: 1rem;
+}
+
+/* Extra Curriculars Section */
+#extra-curriculars {
+    margin-bottom: 3rem; /* Space between sections */
+}
+
+#extra-curriculars h2 {
+    color: lightblue; /* Light blue */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+hr {
+    border: 0.0001px solid gray; /* Adjust the color and thickness as needed */
+    margin: 15px 0; /* Space above and below the line */
+}
+
+.activity h3 {
+    color: aqua; /* Light blue */
+    margin-bottom: 0.5rem;
+}
+
+.activity span {
+    color: lightblue; /* Light purple */
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Contact Section */
+.contact-section {
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 50px 0;
+}
+
+.contact-container {
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.7); /* Match the box shadow */
+    box-shadow: 0px 5px 30px gray;
+    max-width: 400px;
+    width: 100%;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-header h3 {
+    font-size: 1rem;
+    color: lightblue; /* Match the text color */
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: lightblue; /* Match the text color */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.social-icons a {
+    display: inline-block;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: lightblue; /* Match the text color */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: #232323;
+    color: white;
+    resize: none;
+    text-align: left;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #555;
+    text-align: left;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border: 1px solid;
+    text-align: left;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+        background: linear-gradient(45deg, blue, navy, indigo);
+        color:white;
+}
+
+/* Responsive design for contact form */
+@media (max-width: 768px) {
+    .contact-container {
+        width: 100%;
+        padding: 1.5rem;
+    }
+}
+
+/* Footer Styles */
+footer {
+    color: white;
+    text-align: center;
+    margin-top: 3rem; /* Space between footer and content */
+    padding: 1rem;
+    box-shadow: 0 4px 20px grey; /* Glowing effect */
+}
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+
+    .project-card {
+        width: calc(50% - 1rem);
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        width: 100%;
+    }
+}
