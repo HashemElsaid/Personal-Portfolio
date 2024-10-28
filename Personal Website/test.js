@@ -49,59 +49,59 @@ function addWorkExperienceHoverEffect() {
 // Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', addWorkExperienceHoverEffect);
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Ensure EmailJS is already initialized in HTML before this script runs
+document.getElementById('contactForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-    const contactForm = document.getElementById("contactForm");
-    if (!contactForm) {
-        console.error("Contact form not found!");
-        return;
+    // Clear previous errors
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(el => el.style.display = 'none');
+
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Validation flags
+    let isValid = true;
+
+    // Name validation
+    if (name === '') {
+        document.getElementById('nameError').textContent = 'Name is required';
+        document.getElementById('nameError').style.display = 'block';
+        isValid = false;
     }
 
-    // Add keydown event listener to detect "Enter" key press
-    contactForm.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Prevent the default Enter key behavior
-            // Dispatch a submit event instead of directly calling submit()
-            const submitEvent = new Event('submit');
-            contactForm.dispatchEvent(submitEvent);
-        }
-    });
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === '' || !emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = 'Valid email is required';
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+    }
 
-    // Handle form submission
-    contactForm.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission behavior
+    // Message validation
+    if (message === '') {
+        document.getElementById('messageError').textContent = 'Message is required';
+        document.getElementById('messageError').style.display = 'block';
+        isValid = false;
+    }
 
-        // Get form values
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const messageInput = document.getElementById("message");
+    // If form is valid, send the email using EmailJS
+    if (isValid) {
+        const templateParams = {
+            from_name: name,
+            reply_to: email,
+            message: message
+        };
 
-        // Check if form fields exist
-        if (!nameInput || !emailInput || !messageInput) {
-            console.error("Form fields not found!");
-            alert("Something went wrong. Please try again later.");
-            return;
-        }
-
-        // Validate inputs
-        if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-            alert("Please fill in all fields");
-            return;
-        }
-
-        // Send email using EmailJS
-        emailjs.send("service_nh05op7", "template_2d80pkg", {
-            from_name: nameInput.value.trim(),
-            reply_to: emailInput.value.trim(),
-            message: messageInput.value.trim()
-        }).then((response) => {
-            alert("Message sent successfully! I'll get back to you soon.");
-            contactForm.reset(); // Reset the form fields
-        }).catch((error) => {
-            console.error("EmailJS error:", error);
-            alert("Failed to send the message. Please try again later.");
-        });
-    });
+        emailjs.send("service_nh05op7", "template_2d80pkg", templateParams)
+            .then((response) => {
+                alert("Message sent successfully! I'll get back to you soon.");
+                document.getElementById('contactForm').reset(); // Reset the form fields
+            })
+            .catch((error) => {
+                console.error("EmailJS error:", error);
+                alert("Failed to send the message. Please try again later.");
+            });
+    }
 });
-
