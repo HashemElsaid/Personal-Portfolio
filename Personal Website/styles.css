@@ -183,9 +183,9 @@ nav a:hover {
 /* Roadmap Container */
 .roadmap {
     position: relative;
-    width: 40%;
+    width: 90%; /* Increased from 40% for better mobile display */
     margin: 0 auto;
-    padding: 2rem ;
+    padding: 1rem; /* Reduced padding for mobile */
 }
 
 /* Roadmap Vertical Line */
@@ -194,33 +194,33 @@ nav a:hover {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 50%;
+    left: 30px; /* Fixed position from left instead of center */
     width: 4px;
     background-color: rgba(255, 255, 255, 0.3);
     z-index: -1;
-    transform: translateX(-50%);
+    transform: none; /* Remove center transform */
 }
 
 /* Roadmap Item */
 .roadmap-item {
     position: relative;
-    width: 70%;
-    padding: 2rem;  /* Adjust to create a larger hit area for the icon */
-    margin-bottom: 2.5rem;
-    min-height: 100px;  /* Ensure there's enough height for the icon */
+    width: 100%; /* Full width on mobile */
+    padding: 1rem 1rem 1rem 60px; /* Added left padding to accommodate icon */
+    margin-bottom: 2rem;
+    min-height: 100px;
 }
 
 .roadmap-item.right {
-    left: 50%;
+    left: 0; /* Reset left position */
     text-align: left;
 }
 
 /* Roadmap Icon (Checkpoint) */
 .roadmap-icon {
     position: absolute;
-    top: 50%;  /* Center vertically based on the height of the card */
-    transform: translate(-50%, -50%);
-    left: 0%;
+    top: 50%;
+    transform: translateY(-50%); /* Only transform Y axis */
+    left: 6.5px; /* Align with vertical line */
     width: 20px;
     height: 20px;
     background-color: gray;
@@ -232,22 +232,26 @@ nav a:hover {
 .roadmap-content {
     padding: 1.5rem;
     border-radius: 15px;
-    box-shadow: 0px 5px 30px gray
+    box-shadow: 0px 5px 30px gray;
+    background-color: rgba(0, 0, 0, 0.3); /* Added background for better readability */
 }
 
 .roadmap-content h3 {
     color: aqua;
     margin-bottom: 0.5rem;
+    font-size: 1.2rem; /* Added explicit font size */
 }
 
 .roadmap-content span {
     color: lightblue;
-    font-size: 0.9rem;
+    font-size: 1rem; /* Increased from 0.9rem for better readability */
     font-style: italic;
+    display: block; /* Added to ensure clean line breaks */
+    margin-bottom: 0.5rem;
 }
 
 .roadmap-content p {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Slightly reduced from 1.1rem */
     line-height: 1.6;
     margin-top: 0.5rem;
 }
@@ -318,6 +322,10 @@ nav a:hover {
     color: lightblue; /* Light blue */
     margin-bottom: 1rem;
     text-align: center;
+}
+hr {
+    border: 0.0001px solid gray; /* Adjust the color and thickness as needed */
+    margin: 15px 0; /* Space above and below the line */
 }
 
 .activity h3 {

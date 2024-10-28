@@ -48,35 +48,58 @@ function addWorkExperienceHoverEffect() {
 
 // Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', addWorkExperienceHoverEffect);
+
 document.addEventListener("DOMContentLoaded", () => {
-    emailjs.init("of7Psy7HHkEFyRKZ9"); // Replace with your correct user ID
+    // Ensure EmailJS is already initialized in HTML before this script runs
 
     const contactForm = document.getElementById("contactForm");
+    if (!contactForm) {
+        console.error("Contact form not found!");
+        return;
+    }
 
+    // Add keydown event listener to detect "Enter" key press
     contactForm.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent the default Enter key behavior
+            // Dispatch a submit event instead of directly calling submit()
+            const submitEvent = new Event('submit');
+            contactForm.dispatchEvent(submitEvent);
         }
     });
 
+    // Handle form submission
     contactForm.addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent default form submission behavior
 
         // Get form values
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
+
+        // Check if form fields exist
+        if (!nameInput || !emailInput || !messageInput) {
+            console.error("Form fields not found!");
+            alert("Something went wrong. Please try again later.");
+            return;
+        }
+
+        // Validate inputs
+        if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+            alert("Please fill in all fields");
+            return;
+        }
 
         // Send email using EmailJS
         emailjs.send("service_nh05op7", "template_2d80pkg", {
-            from_name: name,
-            reply_to: email,
-            message: message
+            from_name: nameInput.value.trim(),
+            reply_to: emailInput.value.trim(),
+            message: messageInput.value.trim()
         }).then((response) => {
             alert("Message sent successfully! I'll get back to you soon.");
             contactForm.reset(); // Reset the form fields
         }).catch((error) => {
-            console.error("EmailJS Error:", error);
+            console.error("EmailJS error:", error);
             alert("Failed to send the message. Please try again later.");
         });
     });
