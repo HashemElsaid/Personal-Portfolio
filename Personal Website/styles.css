@@ -475,7 +475,7 @@ footer {
 
     .project-card {
         width: calc(50% - 1rem);
-        margin-bottom: 1.5rem; /* Ensure space on smaller screens too */
+        margin-bottom: 1.5rem;
     }
 }
 
